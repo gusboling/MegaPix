@@ -36,17 +36,13 @@ class MainHandler(webapp2.RequestHandler):
         template_values = {
         'num_mov':num_mov,
         }
-        
+
         self.response.out.write(template.render(template_values))
 
-
-
 class GetTitles(webapp2.RequestHandler):
-
     umovpar = movie(id="umovpar")
-
     def get(self):
-        """json_movies = open('json_movies.txt', 'r')
+        json_movies = open('json_movies.txt', 'r')
         for line in json_movies:
             json_line = json.loads(line)
             new_entity = movie(
@@ -62,8 +58,7 @@ class GetTitles(webapp2.RequestHandler):
             if json_line['rt_rat'] != 'N/A':
                 new_entity.rt_rat = int(json_line['rt_rat'])
             if len(movie.query(movie.title==new_entity.title).fetch()) == 0:
-                new_entity.put()"""
-
+                new_entity.put()
         self.redirect('/')
 
 app = webapp2.WSGIApplication([
