@@ -19,4 +19,5 @@ class movie(ndb.Model):
 
 
 class user(ndb.Model):
-	email = ndb.StringProperty()
+	name = ndb.StringProperty()
+	picks = ndb.KeyProperty(repeated=True, kind=movie)

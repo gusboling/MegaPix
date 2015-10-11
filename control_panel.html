@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin - Bootstrap Admin Template</title>
+    <title>MegaPix Control Panel</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +43,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">SB Admin</a>
+                <a class="navbar-brand" href="#">MegaPix</a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -78,12 +78,13 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <h4>Movies</h4>
-                        <b>{{num_mov}}/1000 movies in database.</b>
-                        <form action="/get_titles" method="get"><input type="submit">Update Movies!</input></form>
+                        <b>{{num_mov}} movies in database.</b>
+                        <form action="/update_movies" method="get"><input type="submit" value="Update"></input></form>
                     </div>
                     <div class="col-lg-6">
                         <h4>Users</h4>
-                        <b>{{num_users}}/1000 user in database.</b>
+                        <b>{{num_use}} users in database.</b>
+                        <a href='/update_user'>Create User</a>
                     </div>
                 </div>
 

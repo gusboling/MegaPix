@@ -1,19 +1,4 @@
-#!/usr/bin/env python
-#
-# Copyright 2007 Google Inc.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+
 import webapp2
 import requests
 import cgi
@@ -24,22 +9,15 @@ import jinja2
 
 from google.appengine.ext import ndb
 from ndb_classes import movie
+from ndb_classes import user
 
 jinja_environment = jinja2.Environment(loader = jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
-class MainHandler(webapp2.RequestHandler):
+class HomePage(webapp2.RequestHandler):
     def get(self):
-        template = jinja_environment.get_template('control_panel.html')
+        self.response.out.write('<h1>Hello World</h1><a href="/cp"><h3> I\'m a placeholder!</h3></a>')
 
-        num_mov = movie.query(movie.title != "").count()
-
-        template_values = {
-        'num_mov':num_mov,
-        }
-
-        self.response.out.write(template.render(template_values))
-
-class GetTitles(webapp2.RequestHandler):
+class UpdateMovies(webapp2.RequestHandler):
     umovpar = movie(id="umovpar")
     def get(self):
         json_movies = open('json_movies.txt', 'r')
@@ -57,11 +35,42 @@ class GetTitles(webapp2.RequestHandler):
             new_entity.year = int(fyear)
             if json_line['rt_rat'] != 'N/A':
                 new_entity.rt_rat = int(json_line['rt_rat'])
-            if len(movie.query(movie.title==new_entity.title).fetch()) == 0:
+            if len(movie.query(movie.title==new_entity.title).fetch()) == 0: #No matching entities in datastore. Prevents repeat entries.
                 new_entity.put()
         self.redirect('/')
 
+class ControlPanel(webapp2.RequestHandler):
+    def get(self):
+        template=jinja_environment.get_template('control_panel.html')
+        
+        num_mov = movie.query(movie.title != "").count()
+        num_use = user.query().count()
+
+        template_values = {
+        'num_mov':num_mov,
+        'num_use':num_use
+        }
+
+        self.response.out.write(template.render(template_values))
+
+class UpdateUser(webapp2.RequestHandler):
+    def get(self):
+        template_values = {}
+        template = jinja_environment.get_template('create_user.html')
+        self.response.out.write(template.render(template_values))
+    def post(self):
+        temp_user = user(id=self.request.get('name'))
+        temp_user.name = self.request.get('name')
+        mov_name = self.request.get('pick0')
+        temp_user.picks = [ndb.Key(movie, self.request.get('pick0')), ndb.Key(movie,self.request.get('pick1')) , ndb.Key(movie,self.request.get('pick2'))]
+
+        temp_user.put()
+
+        self.redirect('/cp')
+
 app = webapp2.WSGIApplication([
-    ('/', MainHandler),
-    ('/get_titles', GetTitles)
+    ('/', HomePage),
+    ('/cp', ControlPanel),
+    ('/update_movies', UpdateMovies),
+    ('/update_user', UpdateUser)
 ], debug=True)
