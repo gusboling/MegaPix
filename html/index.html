@@ -29,46 +29,26 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <script src="../js/jquery.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.1/jquery-ui.js"></script>
+
+    <!-- Optional: Reflection -->
+    <script type="text/javascript" src="../js/reflection.js"></script>
+
+    <!-- interpolate, depends on jQ 1.8.0+ -->
+    <script src="../js/jquery.interpolate.js"></script>
+
+    <!-- Coverflow -->
+    <script src="../js/jquery.coverflow.js"></script>
+
+    <script src="../js/main.js"></script>
+
+
 </head>
 
 <body>
 
-    <!-- Navigation -->
-    <!--<nav class="navbar navbar-default" role="navigation">
-        <div class="container">-->
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <!--<div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>-->
-                <!-- navbar-brand is hidden on larger screens, but visible when the menu is collapsed -->
-                <!--<a class="navbar-brand" href="index.html">Business Casual</a>
-            </div>-->
-            <!-- Collect the nav links, forms, and other content for toggling -->
-           <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="index.html">Home</a>
-                    </li>
-                    <li>
-                        <a href="about.html">About</a>
-                    </li>
-                    <li>
-                        <a href="blog.html">Blog</a>
-                    </li>
-                    <li>
-                        <a href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>-->
-            <!-- /.navbar-collapse -->
-       <!-- </div>
-        
-    </nav>-->
-
+   
     <div class="container">
         <div "brand-container">
             <div class="logo"><img src="../assets/logo.png"></div>
@@ -76,38 +56,38 @@
         </div>
 
         <div class="row">
-            <div class="box">
-                <div class="col-sm-12">
-                    <h1 class="text-center">Sign Up</h1>
-                 </div>
-                 <form>
-                     <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="first name"></input>
-                     </div>
-                     <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="last name"></input>
-                     </div>
-                     <div class="col-sm-12">
-                        <input type="email" class="form-control" placeholder="email"></input>
-                     </div>
-                     <div class="col-sm-12">
-                        <hr/>
-                        <h3 class="text-center">favorite movies</h3>
-                    </div>
-                     <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="favorite movie"></input>
-                     </div>
-                     <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="2nd favorite movie"></input>
-                     </div>
-                     <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="3rd favorite movie"></input>
-                     </div>
+            <div class="col-xs-12">
+                
+                <div class="coverflow">
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                </div>
 
-                     <div class="col-sm-12 text-center">
-                        <button>submit</button>
-                     </div>
-                 </form>
+                <div class="reflect"></div>
+
             </div>
         </div>
 
@@ -124,8 +104,6 @@
         </div>
     </footer>
 
-    <!-- jQuery -->
-    <script src="../js/jquery.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../js/bootstrap.min.js"></script>
