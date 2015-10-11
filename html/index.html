@@ -43,24 +43,81 @@
 
     <script src="../js/main.js"></script>
 
+    <!-- Add fancyBox -->
+    <link rel="stylesheet" href="../source/jquery.fancybox.css" type="text/css" media="screen" />
+    <script type="text/javascript" src="../source/jquery.fancybox.pack.js"></script>
+
 
 </head>
 
 <body>
-
-   
     <div class="container">
         <div "brand-container">
             <div class="logo"><img src="../assets/logo.png"></div>
             <div class="brand">megapix</div>
+        
+            <div class="search-container pull-right">
+                <div class="col-md-12">
+                    <div class="input-group" id="adv-search">
+                        <input type="text" class="form-control" placeholder="search for movies" />
+                        <div class="input-group-btn">
+                            <div class="btn-group" role="group">
+                                <div class="dropdown dropdown-lg">
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
+                                    <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                        <form class="form-horizontal" role="form">
+                                          <!-- <div class="form-group">
+                                            <label for="filter">genre</label>
+                                            <select class="form-control">
+                                                <option value="0" selected>all movies</option>
+                                                <option value="1">action</option>
+                                                <option value="2">drama</option>
+                                                <option value="3">comedy</option>
+                                                <option value="4">horror</option>
+                                            </select>
+                                          </div> -->
+                                          <div class="form-group">
+                                            <label for="contain">title</label>
+                                            <input class="form-control" type="text" />
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="contain">year</label>
+                                            <input class="form-control" type="text" />
+                                          </div>
+                                          <div class="form-group">
+                                            <label for="contain">rating (0-100)</label>
+                                            <input class="form-control" type="text" />
+                                          </div>
+                                          <div class="center2right">
+                                            <button id="search" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <button id="search" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
         </div>
-
+        
         <div class="row">
             <div class="col-xs-12">
                 
                 <div class="coverflow">
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
+                    <a class="fancybox" href="#content1">
+                        <div class="cover">
+                            <img class="photos" src="../assets/poster1.jpg"/>
+                        </div>
+                    </a>
+
+                    <a class="fancybox" href="#content2">
+                        <div class="cover">
+                            <img class="photos" src="../assets/poster2.jpg"/>
+                        </div>
+                    </a>
+
                     <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
                     <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
                     <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
@@ -87,6 +144,108 @@
                 </div>
 
                 <div class="reflect"></div>
+
+                <!-- -------------------- FANCY BOX CONTENT --------------------------- -->
+                <div id="content1" style="display: none; width: auto; height: auto;">
+                    <!-- THIS IS THE PART THAT YOU SHOULD TEMPLATE -->
+                    {% for movie in result_list %}
+                    <div class="col-xs-12">
+                        <hr />
+                        <div class="col-xs-12 col-md-3">
+                            <!-- movie poster image -->
+                            <img class="img-responsive" src="../assets/poster1.jpg">
+                        </div>
+                        <div class="col-xs-12 col-md-8 col-md-offset-1">
+                            <!-- movie info -->
+                            <div class="col-xs-12 col-md-10 center2left">
+                                <h1>The Dark Knight</h1>
+                            </div>
+                            <div class="col-xs-12 col-md-2 shortInfo center2right">
+                                <p>{{movie.year}} | {{movie.runtime}}</p>
+                            </div>
+                            <div class="col-xs-12">
+                                <p>
+                                    {{movie.plot}}
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                    <p class="sub-head">genre</p>
+                                    <p class="sub-info">{{movie.genre}}</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                    <p class="sub-head">director</p>
+                                    <p class="sub-info">{{movie.director}}</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                    <p class="sub-head">actors</p>
+                                    <p class="sub-info">{{movie.actors</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                    <p class="sub-head">awards</p>
+                                    <p class="sub-info">{{movie.awards}}</p>
+                            </div>
+                            <div class="col-xs-12 text-center">
+                                <div style="display: inline-block;">
+                                    <img style="width: auto; height: 30px; display: inline-block; vertical-align: middle;" src="../assets/rottenTomatoes.png"/>
+                                    <p style="display: inline-block; vertical-align: middle;" class="sub-head">rotten tomatoes: <strong>{{movie.rt_rating}}</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <!-- END OF TEMPLATE PART -->
+                    </div>
+                </div>
+
+                <div id="content2" style="display: none; width: auto; height: auto;">
+                    <!-- THIS IS THE PART THAT YOU SHOULD TEMPLATE -->
+                    {% for movie in result_list %}
+                    <div class="col-xs-12">
+                        <hr />
+                        <div class="col-xs-12 col-md-3">
+                            <!-- movie poster image -->
+                            <img class="img-responsive" src="../assets/poster2.jpg">
+                        </div>
+                        <div class="col-xs-12 col-md-8 col-md-offset-1">
+                            <!-- movie info -->
+                            <div class="col-xs-12 col-md-10 center2left">
+                                <h1>Skyfall</h1>
+                            </div>
+                            <div class="col-xs-12 col-md-2 shortInfo center2right">
+                                <p>{{movie.year}} | {{movie.runtime}}</p>
+                            </div>
+                            <div class="col-xs-12">
+                                <p>
+                                    {{movie.plot}}
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                    <p class="sub-head">genre</p>
+                                    <p class="sub-info">{{movie.genre}}</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                    <p class="sub-head">director</p>
+                                    <p class="sub-info">{{movie.director}}</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                    <p class="sub-head">actors</p>
+                                    <p class="sub-info">{{movie.actors</p>
+                            </div>
+                            <div class="col-xs-12 col-sm-6">
+                                    <p class="sub-head">awards</p>
+                                    <p class="sub-info">{{movie.awards}}</p>
+                            </div>
+                            <div class="col-xs-12 text-center">
+                                <div style="display: inline-block;">
+                                    <img style="width: auto; height: 30px; display: inline-block; vertical-align: middle;" src="../assets/rottenTomatoes.png"/>
+                                    <p style="display: inline-block; vertical-align: middle;" class="sub-head">rotten tomatoes: <strong>{{movie.rt_rating}}</strong></p>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <!-- END OF TEMPLATE PART -->
+                    </div>
+                </div>
+                 <!-- -------------------- END OF FANCY BOX CONTENT --------------------------- -->
 
             </div>
         </div>
