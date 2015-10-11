@@ -97,3 +97,111 @@ Fargo
 Trainspotting
 Twelve Monkeys
 Heat
+Toy Story
+Casino
+Se7en
+La Haine
+Braveheart
+Underground
+Before Sunrise
+The Usual Suspects
+Andaz Apna Apna
+Léon: The Professional
+The Shawshank Redemption
+Forrest Gump
+The Lion King
+Pulp Fiction
+In the Name of the Father
+Schindler's List
+Jurassic Park
+Groundhog Day
+Unforgiven
+Reservoir Dogs
+Beauty and the Beast
+Terminator 2: Judgement Dat
+The Silence of the Lambs
+Goodfellas
+Indiana Jones and the Last Crusade
+Cinema Paradiso
+Die Hard
+Grave of the Fireflies
+My Neighbor Totoro
+The Princess Bride
+Full Metal Jacket
+Platoon
+Stand by Me
+Castle in the Sky
+Aliens
+Back to the Future
+Ran
+The Terminator
+Nausicaä of the Valley of the Wind
+Once Upon a Time in America
+Scarface
+Star Wars: Episode VI - Return of the Jedi
+Fanny and Alexander
+Gandhi
+Blade Runner
+The Thing
+Das Boot
+Raiders of the Lost Ark
+Raging Bull
+The Elephant Man
+The Shining
+Star Wars: Episode V - The Empire Strikes Back
+Life of Brian
+Stalker
+Alien
+Apocalypse Now
+The Deer Hunter
+Star Wars: Episode IV - A New Hope
+Annie Hall
+Rocky
+Network
+Taxi Driver
+Barry Lyndon
+One Flew Over the Cuckoo's Nest
+Dog Day Afternoon
+Jaws
+Monty Python and the Holy Grail
+The Godfather: Part II
+Chinatown
+The Sting
+Papillon
+Solaris
+The Godfather
+A Clockwork Orange
+Butch Cassidy and the Sundance Kid
+Once Upon a Time in the West
+2001: A Space Odyssey
+The Graduate
+Cool Hand Luke
+The Good, the Bad and the Ugly
+Persona
+The Battle of Algiers
+Who's Afraid of Virginia Woolf
+For a Few Dollars MOre
+A Fistful of Dollars
+Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb
+The Great Escape
+To Kill a Mockingbird
+Lawrence of Arabia
+Judgment at Nuremberg
+The Hustler
+Yojimbo
+Psycho
+The Apartment
+Ben-Hur
+North by Northwest
+Anatomy of a Murder
+The 400 Blows
+Some Like It Hot
+Vertigo
+Touch of Evil
+The Bridge on the River Kwai
+Paths of Glory
+12 Angry Men
+The Seventh Seal
+Throne of Blood
+The Night of the Hunter
+Avatar

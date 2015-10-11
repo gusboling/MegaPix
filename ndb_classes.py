@@ -20,9 +20,7 @@ class movie(ndb.Model):
 	poster_url=ndb.StringProperty()
 	actors=ndb.StringProperty()
 	awards=ndb.StringProperty()
-	imdbrat=ndb.FloatProperty()
-
-
+	rt_rating=ndb.IntegerProperty()
 
 	@staticmethod
 	def get_by_title(title):

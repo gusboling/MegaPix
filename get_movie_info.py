@@ -34,7 +34,7 @@ for line in fio:
                 'poster_url':parsed_resp['Poster'],
                 'actors':parsed_resp['Actors'],
                 'awards':parsed_resp['Awards'],
-                'imdbrat':parsed_resp['imdbRating']
+                'rt_rating':parsed_resp['tomatoMeter']
             }
             
             json_file.write(json.dumps(d)+'\n')

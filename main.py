@@ -13,6 +13,11 @@ from ndb_classes import user
 
 jinja_environment = jinja2.Environment(loader = jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
+class ClearMovies(webapp2.RequestHandler):
+    def get(self): 
+        movie_list = movie.query().fetch(500)
+        for mov in movie_list:
+            mov.key.delete()
 
 class ControlPanel(webapp2.RequestHandler):
     def get(self):
@@ -29,6 +34,30 @@ class ControlPanel(webapp2.RequestHandler):
         }
 
         self.response.out.write(template.render(template_values))
+
+class Search(webapp2.RequestHandler):
+    def post(self):
+        t_title = self.request.get('title') #DEFAULT VALUE IS "default_value"
+        #t_genre = self.request.get('genre') #DOESN'T CURRENTLY WORK...
+        t_year = self.request.get('year') #DEFAULT VALUE IS 0
+        t_rating = self.request.get('rating')#DEFAULT VALUE IS 0
+
+        if t_title == "default_value":
+            if t_year != 0:
+                result_list = movie.query(movie.year == t_year, movie.imdbrat >= t_rating).fetch()
+            else:
+                result_list = movie.query(movie.rating >= t_rating).fetch()
+        else:
+            if t_year != 0:
+                result_list = movie.query(movie.title == t_title, movie.year == t_year, movie.imdbrat >= t_rating).fetch()
+            else:
+                result_list = movie.query(movie.title == t_title, movie.imdbrat >= t_rating).fetch()
+
+        template_values = {
+            'result_list': result_list
+        }
+
+
 
 class SignUp(webapp2.RequestHandler):
     def get(self):
@@ -56,12 +85,11 @@ class UpdateMovies(webapp2.RequestHandler):
                     actors=json_line['actors'],
                     awards=json_line['awards'],
                     poster_url=json_line['poster_url']
-
                 )
             fyear = json_line['year'][0]+json_line['year'][1]+json_line['year'][2]+json_line['year'][3] #Horrible hack to get around UTF8 wierdness...
             new_entity.year = int(fyear)
-            if json_line['imdbrat'] != 'N/A':
-                new_entity.imdbrat = float(json_line['imdbrat'])
+            if json_line['rt_rating'] != 'N/A':
+                new_entity.rt_rating = int(json_line['rt_rating'])
             if len(movie.query(movie.title==new_entity.title).fetch()) == 0: #No matching entities in datastore. Prevents repeat entries.
                 new_entity.put()
         self.redirect('/')
@@ -74,22 +102,13 @@ class UpdateUser(webapp2.RequestHandler):
     def post(self):
         temp_user = user(id=self.request.get('name'))
         temp_user.name = self.request.get('name')
-        mov_name = self.request.get('pick0')
-        temp_user.picks = [ndb.Key(movie, self.request.get('pick0')), ndb.Key(movie,self.request.get('pick1')) , ndb.Key(movie,self.request.get('pick2'))]
-
         temp_user.put()
-
         self.redirect('/home')
 
-class ClearMovies(webapp2.RequestHandler):
-    def get(self): 
-        movie_list = movie.query().fetch(500)
-        for mov in movie_list:
-            mov.key.delete()
 
 app = webapp2.WSGIApplication([
     ('/', SignUp),
-    ('/cp', ControlPanel),
+    ('/updatemovies', UpdateMovies),
     ('/clearmovies', ClearMovies),
     ('/home', HomePage),
     ('/update_movies', UpdateMovies),
