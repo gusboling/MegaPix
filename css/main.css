@@ -7,6 +7,7 @@
 
 body {
     font-size: 12px;
+    font: ;
 }
 
 input {
@@ -17,15 +18,35 @@ input {
 }
 
 button {
-    background-color: #21C064;
+    background-color: transparent;
     border: 3px solid #21C064;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 3px;
     padding-bottom: 3px;
     margin: 10px;
-    color: #1c1c1c;
+    color: #21C064;
     font-size: 2em;
     font-family: 'Maven Pro', sans-serif;
+    border-radius: 0px;
+}
 
+button:hover {
+    background-color: #21C064;
+    color: #1c1c1c;
+}
+
+h1, h2, h3 {
+    font-family: 'Roboto Condensed', sans-serif;
+    text-transform: uppercase;
+}
+
+div.logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 1em;
+
+}
+div.brand-container {
+    display: inline-block;
 }
