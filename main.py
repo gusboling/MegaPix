@@ -1,6 +1,5 @@
 
 import webapp2
-import requests
 import cgi
 import os
 import logging
@@ -8,14 +7,38 @@ import json
 import jinja2
 
 from google.appengine.ext import ndb
+
 from ndb_classes import movie
 from ndb_classes import user
 
 jinja_environment = jinja2.Environment(loader = jinja2.FileSystemLoader(os.path.dirname(__file__)))
 
+
+class ControlPanel(webapp2.RequestHandler):
+    def get(self):
+        template=jinja_environment.get_template('control_panel.html')
+        
+        num_mov = movie.query().count()
+        num_use = user.query().count()
+
+        movie_object = movie.get_by_title("Captain America: The Winter Soldier");
+
+        template_values = {
+        'num_mov':num_mov,
+        'num_use':num_use
+        }
+
+        self.response.out.write(template.render(template_values))
+
+class SignUp(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('/html/signup.html')
+        template_values = {}
+        self.response.out.write(template.render(template_values))
+
 class HomePage(webapp2.RequestHandler):
     def get(self):
-        self.response.out.write('<h1>Hello World</h1><a href="/cp"><h3> I\'m a placeholder!</h3></a>')
+        pass
 
 class UpdateMovies(webapp2.RequestHandler):
     umovpar = movie(id="umovpar")
@@ -24,34 +47,24 @@ class UpdateMovies(webapp2.RequestHandler):
         for line in json_movies:
             json_line = json.loads(line)
             new_entity = movie(
-                runtime=json_line['runtime'],
-                plot=json_line['plot'],
-                poster_url=json_line['poster_url'],
-                title=json_line['title'],
-                id=json_line['title'],
-                parent=ndb.Key(movie,"umovpar")
+                    title=json_line['title'],
+                    rated=json_line['year'],
+                    runtime=json_line['runtime'],
+                    plot=json_line['plot'],
+                    genre=json_line['genre'],
+                    director=json_line['director'],
+                    actors=json_line['actors'],
+                    awards=json_line['awards'],
+                    poster_url=json_line['poster_url']
+
                 )
             fyear = json_line['year'][0]+json_line['year'][1]+json_line['year'][2]+json_line['year'][3] #Horrible hack to get around UTF8 wierdness...
             new_entity.year = int(fyear)
-            if json_line['rt_rat'] != 'N/A':
-                new_entity.rt_rat = int(json_line['rt_rat'])
+            if json_line['imdbrat'] != 'N/A':
+                new_entity.imdbrat = float(json_line['imdbrat'])
             if len(movie.query(movie.title==new_entity.title).fetch()) == 0: #No matching entities in datastore. Prevents repeat entries.
                 new_entity.put()
         self.redirect('/')
-
-class ControlPanel(webapp2.RequestHandler):
-    def get(self):
-        template=jinja_environment.get_template('control_panel.html')
-        
-        num_mov = movie.query(movie.title != "").count()
-        num_use = user.query().count()
-
-        template_values = {
-        'num_mov':num_mov,
-        'num_use':num_use
-        }
-
-        self.response.out.write(template.render(template_values))
 
 class UpdateUser(webapp2.RequestHandler):
     def get(self):
@@ -66,11 +79,21 @@ class UpdateUser(webapp2.RequestHandler):
 
         temp_user.put()
 
-        self.redirect('/cp')
+        self.redirect('/home')
+
+class ClearMovies(webapp2.RequestHandler):
+    def get(self): 
+        movie_list = movie.query().fetch(500)
+        for mov in movie_list:
+            mov.key.delete()
 
 app = webapp2.WSGIApplication([
-    ('/', HomePage),
+    ('/', SignUp),
     ('/cp', ControlPanel),
+    ('/clearmovies', ClearMovies),
+    ('/home', HomePage),
     ('/update_movies', UpdateMovies),
     ('/update_user', UpdateUser)
 ], debug=True)
+
+
