@@ -51,17 +51,20 @@ class Search(webapp2.RequestHandler):
         template = jinja_environment.get_template('/html/search.html')
         self.response.out.write(template.render(template_values))
 
-
+class HomePage(webapp2.RequestHandler):
+    def get(self):
+        template = jinja_environment.get_template('/html/index.html')
+        result_list = movie.query(movie.rt_rating >= 80).fetch(20)
+        template_values = {
+        'result_list':result_list
+        }
+        self.response.out.write(template.render(template_values))
 
 class SignUp(webapp2.RequestHandler):
     def get(self):
         template = jinja_environment.get_template('/html/signup.html')
         template_values = {}
         self.response.out.write(template.render(template_values))
-
-class HomePage(webapp2.RequestHandler):
-    def get(self):
-        pass
 
 class UpdateMovies(webapp2.RequestHandler):
     umovpar = movie(id="umovpar")
@@ -86,7 +89,7 @@ class UpdateMovies(webapp2.RequestHandler):
                 new_entity.rt_rating = int(json_line['rt_rating'])
             if len(movie.query(movie.title==new_entity.title).fetch()) == 0: #No matching entities in datastore. Prevents repeat entries.
                 new_entity.put()
-        self.redirect('/')
+        self.redirect('/home')
 
 class UpdateUser(webapp2.RequestHandler):
     def get(self):
@@ -102,6 +105,7 @@ class UpdateUser(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', SignUp),
+    ('/home', HomePage),
     ('/search', Search),
     ('/updatemovies', UpdateMovies),
     ('/clearmovies', ClearMovies),

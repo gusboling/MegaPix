@@ -117,35 +117,14 @@
                             <img class="photos" src="../assets/poster2.jpg"/>
                         </div>
                     </a>
-
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster2.jpg"/></div>
-                    <div class="cover"><img class="photos" src="../assets/poster1.jpg"/></div>
+                    {% for movie in result_list %}
+                        <div class="cover"><img class="photos" src="{{movie.poster_url}}"/></div>
+                    {% endfor %}
                 </div>
 
                 <div class="reflect"></div>
 
-                <!-- -------------------- FANCY BOX CONTENT --------------------------- -->
+                <!-- FANCY BOX CONTENT -->
                 <div id="content1" style="display: none; width: auto; height: auto;">
                     <!-- THIS IS THE PART THAT YOU SHOULD TEMPLATE -->
                     {% for movie in result_list %}
@@ -178,7 +157,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6">
                                     <p class="sub-head">actors</p>
-                                    <p class="sub-info">{{movie.actors</p>
+                                    <p class="sub-info">{{movie.actors}}</p>
                             </div>
                             <div class="col-xs-12 col-sm-6">
                                     <p class="sub-head">awards</p>
@@ -194,6 +173,7 @@
                         <hr />
                         <!-- END OF TEMPLATE PART -->
                     </div>
+                    {% endfor %}
                 </div>
 
                 <div id="content2" style="display: none; width: auto; height: auto;">
@@ -228,7 +208,7 @@
                             </div>
                             <div class="col-xs-12 col-sm-6">
                                     <p class="sub-head">actors</p>
-                                    <p class="sub-info">{{movie.actors</p>
+                                    <p class="sub-info">{{movie.actors}}</p>
                             </div>
                             <div class="col-xs-12 col-sm-6">
                                     <p class="sub-head">awards</p>
@@ -244,8 +224,9 @@
                         <hr />
                         <!-- END OF TEMPLATE PART -->
                     </div>
+                    {% endfor%}
                 </div>
-                 <!-- -------------------- END OF FANCY BOX CONTENT --------------------------- -->
+                 <!-- END OF FANCY BOX CONTENT -->
 
             </div>
         </div>
