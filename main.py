@@ -26,7 +26,7 @@ class Search(webapp2.RequestHandler):
         self.response.out.write(template.render(template_values))
 
     def post(self):
-        t_title = self.request.get('title') #DEFAULT VALUE IS "default_value"
+        t_title = "default_value" #DEFAULT VALUE IS "default_value"
         #t_genre = self.request.get('genre') #DOESN'T CURRENTLY WORK...
         t_year = int(self.request.get('year')) #DEFAULT VALUE IS 0
         t_rating = int(self.request.get('rating'))#DEFAULT VALUE IS 0

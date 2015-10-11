@@ -13,8 +13,20 @@ handlers:
 - url: /js
   static_dir: js
 
-- url: /resources
-  static_dir: resources
+- url: /assets
+  static_dir: assets
+
+- url: /font-awesome
+  static_dir: font-awesome
+
+- url: /fonts
+  static_dir: fonts
+
+- url: /lib
+  static_dir: lib
+
+- url: /source
+  static_dir: source
 
 - url: /favicon\.ico
   static_files: favicon.ico

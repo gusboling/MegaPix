@@ -65,7 +65,7 @@
                                 <div class="dropdown dropdown-lg">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
                                     <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                        <form class="form-horizontal" role="form">
+                                        <form action="/search" method="post" class="form-horizontal" role="form">
                                           <!-- <div class="form-group">
                                             <label for="filter">genre</label>
                                             <select class="form-control">
@@ -77,16 +77,12 @@
                                             </select>
                                           </div> -->
                                           <div class="form-group">
-                                            <label for="contain">title</label>
-                                            <input class="form-control" type="text" />
-                                          </div>
-                                          <div class="form-group">
                                             <label for="contain">year</label>
-                                            <input class="form-control" type="text" />
+                                            <input class="form-control" type="text" name="year"/>
                                           </div>
                                           <div class="form-group">
                                             <label for="contain">rating (0-100)</label>
-                                            <input class="form-control" type="text" />
+                                            <input class="form-control" type="text" name="rating"/>
                                           </div>
                                           <div class="center2right">
                                             <button id="search" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
@@ -106,38 +102,40 @@
             <div class="col-xs-12">
                 
                 <div class="coverflow">
-                    <a class="fancybox" href="#content1">
+                    {% for movie in result_list %}
+                    <a class="fancybox" href="#{{movie.title}}">
                         <div class="cover">
-                            <img class="photos" src="../assets/poster1.jpg"/>
+                            <img class="photos" src="{{movie.poster_url}}"/>
                         </div>
                     </a>
+                    {% endfor %}
 
-                    <a class="fancybox" href="#content2">
+                    <!--<a class="fancybox" href="#content2">
                         <div class="cover">
                             <img class="photos" src="../assets/poster2.jpg"/>
                         </div>
-                    </a>
-                    {% for movie in result_list %}
+                    </a>-->
+                    <!--{% for movie in result_list %}
                         <div class="cover"><img class="photos" src="{{movie.poster_url}}"/></div>
-                    {% endfor %}
+                    {% endfor %}-->
                 </div>
 
                 <div class="reflect"></div>
 
                 <!-- FANCY BOX CONTENT -->
-                <div id="content1" style="display: none; width: auto; height: auto;">
+                {% for movie in result_list %}
+                <div id="{{movie.title}}" style="display: none; width: auto; height: auto;">
                     <!-- THIS IS THE PART THAT YOU SHOULD TEMPLATE -->
-                    {% for movie in result_list %}
                     <div class="col-xs-12">
                         <hr />
                         <div class="col-xs-12 col-md-3">
                             <!-- movie poster image -->
-                            <img class="img-responsive" src="../assets/poster1.jpg">
+                            <img class="img-responsive" src="{{movie.poster_url}}">
                         </div>
                         <div class="col-xs-12 col-md-8 col-md-offset-1">
                             <!-- movie info -->
                             <div class="col-xs-12 col-md-10 center2left">
-                                <h1>The Dark Knight</h1>
+                                <h1>{{movie.title}}</h1>
                             </div>
                             <div class="col-xs-12 col-md-2 shortInfo center2right">
                                 <p>{{movie.year}} | {{movie.runtime}}</p>
@@ -173,59 +171,8 @@
                         <hr />
                         <!-- END OF TEMPLATE PART -->
                     </div>
-                    {% endfor %}
                 </div>
-
-                <div id="content2" style="display: none; width: auto; height: auto;">
-                    <!-- THIS IS THE PART THAT YOU SHOULD TEMPLATE -->
-                    {% for movie in result_list %}
-                    <div class="col-xs-12">
-                        <hr />
-                        <div class="col-xs-12 col-md-3">
-                            <!-- movie poster image -->
-                            <img class="img-responsive" src="../assets/poster2.jpg">
-                        </div>
-                        <div class="col-xs-12 col-md-8 col-md-offset-1">
-                            <!-- movie info -->
-                            <div class="col-xs-12 col-md-10 center2left">
-                                <h1>Skyfall</h1>
-                            </div>
-                            <div class="col-xs-12 col-md-2 shortInfo center2right">
-                                <p>{{movie.year}} | {{movie.runtime}}</p>
-                            </div>
-                            <div class="col-xs-12">
-                                <p>
-                                    {{movie.plot}}
-                                </p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6">
-                                    <p class="sub-head">genre</p>
-                                    <p class="sub-info">{{movie.genre}}</p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6">
-                                    <p class="sub-head">director</p>
-                                    <p class="sub-info">{{movie.director}}</p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6">
-                                    <p class="sub-head">actors</p>
-                                    <p class="sub-info">{{movie.actors}}</p>
-                            </div>
-                            <div class="col-xs-12 col-sm-6">
-                                    <p class="sub-head">awards</p>
-                                    <p class="sub-info">{{movie.awards}}</p>
-                            </div>
-                            <div class="col-xs-12 text-center">
-                                <div style="display: inline-block;">
-                                    <img style="width: auto; height: 30px; display: inline-block; vertical-align: middle;" src="../assets/rottenTomatoes.png"/>
-                                    <p style="display: inline-block; vertical-align: middle;" class="sub-head">rotten tomatoes: <strong>{{movie.rt_rating}}</strong></p>
-                                </div>
-                            </div>
-                        </div>
-                        <hr />
-                        <!-- END OF TEMPLATE PART -->
-                    </div>
-                    {% endfor%}
-                </div>
+                {% endfor %}
                  <!-- END OF FANCY BOX CONTENT -->
 
             </div>
