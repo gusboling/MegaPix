@@ -19,43 +19,37 @@ class ClearMovies(webapp2.RequestHandler):
         for mov in movie_list:
             mov.key.delete()
 
-class ControlPanel(webapp2.RequestHandler):
+class Search(webapp2.RequestHandler):
     def get(self):
-        template=jinja_environment.get_template('control_panel.html')
-        
-        num_mov = movie.query().count()
-        num_use = user.query().count()
-
-        movie_object = movie.get_by_title("Captain America: The Winter Soldier");
-
-        template_values = {
-        'num_mov':num_mov,
-        'num_use':num_use
-        }
-
+        template = jinja_environment.get_template('/html/intial_search.html')
+        template_values={}
         self.response.out.write(template.render(template_values))
 
-class Search(webapp2.RequestHandler):
     def post(self):
         t_title = self.request.get('title') #DEFAULT VALUE IS "default_value"
         #t_genre = self.request.get('genre') #DOESN'T CURRENTLY WORK...
-        t_year = self.request.get('year') #DEFAULT VALUE IS 0
-        t_rating = self.request.get('rating')#DEFAULT VALUE IS 0
+        t_year = int(self.request.get('year')) #DEFAULT VALUE IS 0
+        t_rating = int(self.request.get('rating'))#DEFAULT VALUE IS 0
 
         if t_title == "default_value":
             if t_year != 0:
-                result_list = movie.query(movie.year == t_year, movie.imdbrat >= t_rating).fetch()
+                result_list = movie.query(movie.year == t_year, movie.rt_rating >= t_rating).fetch(200)
             else:
-                result_list = movie.query(movie.rating >= t_rating).fetch()
+                result_list = movie.query(movie.rt_rating >= t_rating).fetch()
         else:
             if t_year != 0:
                 result_list = movie.query(movie.title == t_title, movie.year == t_year, movie.imdbrat >= t_rating).fetch()
+            elif t_rating != 0:
+                result_list = movie.query(movie.title == t_title, movie.rt_rating >= t_rating).fetch()
             else:
-                result_list = movie.query(movie.title == t_title, movie.imdbrat >= t_rating).fetch()
+                result_list = movie.query().fetch()
 
         template_values = {
             'result_list': result_list
         }
+
+        template = jinja_environment.get_template('/html/search.html')
+        self.response.out.write(template.render(template_values))
 
 
 
@@ -108,6 +102,7 @@ class UpdateUser(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', SignUp),
+    ('/search', Search),
     ('/updatemovies', UpdateMovies),
     ('/clearmovies', ClearMovies),
     ('/home', HomePage),

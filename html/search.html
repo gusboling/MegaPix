@@ -47,7 +47,7 @@
                                 <div class="dropdown dropdown-lg">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><span class="caret"></span></button>
                                     <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                        <form class="form-horizontal" role="form">
+                                        <form  action="/search" method="post" class="form-horizontal" role="form">
                                           <div class="form-group">
                                             <label for="filter">genre</label>
                                             <select class="form-control">
@@ -60,15 +60,15 @@
                                           </div>
                                           <div class="form-group">
                                             <label for="contain">title</label>
-                                            <input class="form-control" type="text" />
+                                            <input class="form-control" type="text" value="default_value" placeholder="Any Movie" name="title"/>
                                           </div>
                                           <div class="form-group">
                                             <label for="contain">year</label>
-                                            <input class="form-control" type="text" />
+                                            <input class="form-control" type="text" value="0" placeholder="From Any Year" name="year"/>
                                           </div>
                                           <div class="form-group">
                                             <label for="contain">rating (0-100)</label>
-                                            <input class="form-control" type="text" />
+                                            <input class="form-control" type="text" value="0" placeholder="With Any Rating" name="rating"/>
                                           </div>
                                           <div class="center2right">
                                             <button id="search" type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
@@ -97,7 +97,7 @@
                     <hr />
                     <div class="col-xs-12 col-md-3">
                         <!-- movie poster image -->
-                        <img class="img-responsive" src="{{poster_url}}">
+                        <img class="img-responsive" src="{{movie.poster_url}}" alternate="http://placehold.it/300x445">
                     </div>
                     <div class="col-xs-12 col-md-8 col-md-offset-1">
                         <!-- movie info -->
@@ -122,7 +122,7 @@
                         </div>
                         <div class="col-xs-12 col-sm-6">
                                 <p class="sub-head">actors</p>
-                                <p class="sub-info">{{movie.actors</p>
+                                <p class="sub-info">{{movie.actors}}</p>
                         </div>
                         <div class="col-xs-12 col-sm-6">
                                 <p class="sub-head">awards</p>
