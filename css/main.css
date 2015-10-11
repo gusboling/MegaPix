@@ -133,6 +133,11 @@ p.sub-info {
 
 /************ STYLES FROM COVER FLOW *******************/
 
+.cover {
+    height: 435px;
+    width: 100%;
+    display: block;
+}
 
 .coverflow .cover {
     width: 300px;
@@ -188,3 +193,9 @@ p.sub-info {
 }
 
 /************ END COVER FLOW STYLES *******************/
+
+a.fancybox {
+    display: block;
+    width: auto;
+    height: auto;
+}
