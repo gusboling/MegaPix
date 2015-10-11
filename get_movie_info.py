@@ -26,11 +26,17 @@ for line in fio:
             d = {
                 'title':parsed_resp['Title'],
                 'year':parsed_resp['Year'],
-                'rt_rat':parsed_resp['tomatoMeter'],
+                'rated':parsed_resp['Rated'],
                 'runtime':parsed_resp['Runtime'],
                 'plot':parsed_resp['Plot'],
-                'poster_url':parsed_resp['Poster']
+                'genre':parsed_resp['Genre'],
+                'director':parsed_resp['Director'],
+                'poster_url':parsed_resp['Poster'],
+                'actors':parsed_resp['Actors'],
+                'awards':parsed_resp['Awards'],
+                'rt_rating':parsed_resp['tomatoMeter']
             }
+            
             json_file.write(json.dumps(d)+'\n')
             print "%d: Success" % p_count
         else:

@@ -10,7 +10,7 @@
     <meta name="author" content="">
 
 
-    <title> TITLE GOES HERE</title>
+    <title>MegaPix - Signup</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -32,7 +32,7 @@
 </head>
 
 <body>
-
+    <div class="brand">MegaPix</div>
     <!-- Navigation -->
     <!--<nav class="navbar navbar-default" role="navigation">
         <div class="container">-->
@@ -80,32 +80,29 @@
                 <div class="col-sm-12">
                     <h1 class="text-center">Sign Up</h1>
                  </div>
-                 <form>
+                 <form action="/update_user" method="post">
                      <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="first name"></input>
-                     </div>
-                     <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="last name"></input>
+                        <input type="text" class="form-control" placeholder="name"></input>
                      </div>
                      <div class="col-sm-12">
                         <input type="email" class="form-control" placeholder="email"></input>
                      </div>
                      <div class="col-sm-12">
                         <hr/>
-                        <h3 class="text-center">favorite movies</h3>
+                        <h3 class="text-center">Favorite movies</h3>
                     </div>
                      <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="favorite movie"></input>
+                        <input type="text" class="form-control" placeholder="Favorite Movie" name="pick0"></input>
                      </div>
                      <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="2nd favorite movie"></input>
+                        <input type="text" class="form-control" placeholder="2nd Favorite Movie" name="pick1"></input>
                      </div>
                      <div class="col-sm-12">
-                        <input type="text" class="form-control" placeholder="3rd favorite movie"></input>
+                        <input type="text" class="form-control" placeholder="3rd Favorite Movie" name="pick2"></input>
                      </div>
 
                      <div class="col-sm-12 text-center">
-                        <button>submit</button>
+                        <button>Create Account!</button>
                      </div>
                  </form>
             </div>

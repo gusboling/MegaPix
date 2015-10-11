@@ -92,52 +92,53 @@
                 </div>
 
                 <!-- THIS IS THE PART THAT YOU SHOULD TEMPLATE -->
+                {% for movie in result_list %}
                 <div class="col-xs-12">
                     <hr />
                     <div class="col-xs-12 col-md-3">
                         <!-- movie poster image -->
-                        <img class="img-responsive" src="../assets/poster1.jpg">
+                        <img class="img-responsive" src="{{poster_url}}">
                     </div>
                     <div class="col-xs-12 col-md-8 col-md-offset-1">
                         <!-- movie info -->
                         <div class="col-xs-12 col-md-10 center2left">
-                            <h1>The Dark Knight</h1>
+                            <h1>{{movie.title}}</h1>
                         </div>
                         <div class="col-xs-12 col-md-2 shortInfo center2right">
-                            <p>2009 | 95min</p>
+                            <p>{{movie.year}} | {{movie.runtime}}</p>
                         </div>
                         <div class="col-xs-12">
                             <p>
-                                Batman raises the stakes in his war on crime. With the help of Lieutenant Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the city streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as The Joker.
+                                {{movie.plot}}
                             </p>
                         </div>
                         <div class="col-xs-12 col-sm-6">
                                 <p class="sub-head">genre</p>
-                                <p class="sub-info">Action, Crime, Drama</p>
+                                <p class="sub-info">{{movie.genre}}</p>
                         </div>
                         <div class="col-xs-12 col-sm-6">
                                 <p class="sub-head">director</p>
-                                <p class="sub-info">Christopher Nolan</p>
+                                <p class="sub-info">{{movie.director}}</p>
                         </div>
                         <div class="col-xs-12 col-sm-6">
                                 <p class="sub-head">actors</p>
-                                <p class="sub-info">Christian Bale, Heath Ledger, Aaron Eckhart, Michael Caine</p>
+                                <p class="sub-info">{{movie.actors</p>
                         </div>
                         <div class="col-xs-12 col-sm-6">
                                 <p class="sub-head">awards</p>
-                                <p class="sub-info">Won 2 Oscars. Another 142 wins &amp; 106 nominations</p>
+                                <p class="sub-info">{{movie.awards}}</p>
                         </div>
                         <div class="col-xs-12 text-center">
                             <div style="display: inline-block;">
                                 <img style="width: auto; height: 30px; display: inline-block; vertical-align: middle;" src="../assets/rottenTomatoes.png"/>
-                                <p style="display: inline-block; vertical-align: middle;" class="sub-head">rotten tomatoes: <strong>87</strong></p>
+                                <p style="display: inline-block; vertical-align: middle;" class="sub-head">rotten tomatoes: <strong>{{movie.rt_rating}}</strong></p>
                             </div>
                         </div>
                     </div>
                     <hr />
                     <!-- END OF TEMPLATE PART -->
                 </div>
-
+                {% endfor %}
             </div>
         </div>
 
